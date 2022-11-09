@@ -16,3 +16,25 @@ function conectarBD($cadenaConexion, $usuario, $pass) {
 
 $bd=conectarBD($cadenaConexion, $usuario, $pass);
 
+
+function consulta($consulta){
+    $ins="$consulta";
+    $result = $bd->query($ins);
+}
+
+
+/*require 'vendor/autoload.php';
+try{
+    $cliente= new MongoDB\Client("mongodb://localhost:27017");
+    $bd = $cliente->libroservidor;
+    
+    //Se elimina el usuario llamado 'Paco'
+    $updateResult = $bd->usuarios->deleteOne(
+            ['nombre'=>'Pablo']
+    );
+    
+    echo "Documentos restantes después de borrar ".$bd->usuarios->count();
+    
+} catch (Exception $ex) {
+    print ($ex);
+}*/

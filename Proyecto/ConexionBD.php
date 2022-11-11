@@ -5,17 +5,33 @@ $permitirInstancianueva;
 $cadenaConexion = 'mysql:dbname=proyecto;host=127.0.0.1';
 $usuario = filter_input(INPUT_POST, "usuario");
 $pass = filter_input(INPUT_POST, "clave");
-$c = 0;
 
-function consulta($consulta, $cadenaConexion, $usuario, $pass) {
+
+/*
+ * funcion inicioSesion(consulta,cadena de conexion, usuario, pass)
+ * conecta a la base de datos y comprueba, si la consulta devuelve alguna
+ * fila, significa que encontro el usuario y la contraseña, por lo tanto
+ * la sesion comienza
+ * 
+ */
+function inicioSesion($consulta, $cadenaConexion, $usuario, $pass) {
     $bd = new PDO($cadenaConexion, "root", "");
     $bd->beginTransaction();
     $ins = $consulta;
     $result = $bd->query($ins);
-    foreach ($result as $resultado) {
+    if($result->rowCount()===1) {
         session_start();
+        $_SESSION["user"]=$usuario;
     }
-    return $result;
 }
 
-$consulta = consulta('select * from users where PASSWORD = sha1("'.$pass.'")&&USER="'.$usuario.'";', $cadenaConexion, $usuario, $pass);
+function sesion(){
+    if(isset($_SESSION["user"])){
+        header ("Location:./pages/inicio.php");
+    }
+}
+
+
+inicioSesion('select * from users where PASSWORD = sha1("'
+        .$pass.'")&&USER="'.$usuario.'";', $cadenaConexion, $usuario, $pass);
+sesion();

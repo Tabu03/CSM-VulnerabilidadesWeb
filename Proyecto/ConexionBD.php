@@ -30,11 +30,7 @@ function addCliente($consulta, $cadenaConexion) {
     $bd->beginTransaction();
     $ins = $consulta;
     $result = $bd->query($ins);
-    echo "<table>";
-    foreach ($result as $fila){
-        echo "<tr><td>".$fila["ID"]."</td><td>".$fila["USER"]."</td><td>".$fila["SALDO"]."</td></tr>";
-    }
-    echo "</table>";
+    
 }
 
 function sesion(){
@@ -44,4 +40,8 @@ function sesion(){
 }
 
 
-
+echo "<table class='table'>";
+    foreach ($result as $fila){
+        echo "<tr><td>".$fila["ID"]."</td><td>".$fila["USER"]."</td><td>".$fila["SALDO"]."</td></tr>";
+    }
+    echo "</table>";

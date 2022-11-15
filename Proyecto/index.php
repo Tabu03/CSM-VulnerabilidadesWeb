@@ -6,9 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         inicioSesion('select * from users where PASSWORD = sha1("'.$pass.'")&&USER="'.$usuario.'";', $cadenaConexion, $usuario, $pass);
         addCliente('select * from users', $cadenaConexion);
 }
-/*if(isset($_SESSION["user"])){
-    header("location: ./pages/inicio.php");
-}*/
 ?>
 <html>
     <head>

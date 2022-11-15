@@ -25,6 +25,17 @@ function inicioSesion($consulta, $cadenaConexion, $usuario, $pass) {
     }
 }
 
+function addCliente($consulta, $cadenaConexion, $usuario, $pass) {
+    $bd = new PDO($cadenaConexion, "root", "");
+    $bd->beginTransaction();
+    $ins = $consulta;
+    $result = $bd->query($ins);
+    if($result->rowCount()===1) {
+        session_start();
+        $_SESSION["user"]=$usuario;
+    }
+}
+
 function sesion(){
     if(isset($_SESSION["user"])){
         header ("Location:./pages/inicio.php");
@@ -32,6 +43,4 @@ function sesion(){
 }
 
 
-inicioSesion('select * from users where PASSWORD = sha1("'
-        .$pass.'")&&USER="'.$usuario.'";', $cadenaConexion, $usuario, $pass);
-sesion();
+

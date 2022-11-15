@@ -3,6 +3,7 @@
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
         include 'ConexionBD.php';
+        inicioSesion('select * from users where PASSWORD = sha1("'.$pass.'")&&USER="'.$usuario.'";', $cadenaConexion, $usuario, $pass);
 }
 if(isset($_SESSION["user"])){
     header("location: ./pages/inicio.php");

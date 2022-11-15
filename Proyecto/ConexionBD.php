@@ -25,15 +25,16 @@ function inicioSesion($consulta, $cadenaConexion, $usuario, $pass) {
     }
 }
 
-function addCliente($consulta, $cadenaConexion, $usuario, $pass) {
+function addCliente($consulta, $cadenaConexion) {
     $bd = new PDO($cadenaConexion, "root", "");
     $bd->beginTransaction();
     $ins = $consulta;
     $result = $bd->query($ins);
-    if($result->rowCount()===1) {
-        session_start();
-        $_SESSION["user"]=$usuario;
+    echo "<table>";
+    foreach ($result as $fila){
+        echo "<tr><td>".$fila["ID"]."</td><td>".$fila["USER"]."</td><td>".$fila["SALDO"]."</td></tr>";
     }
+    echo "</table>";
 }
 
 function sesion(){

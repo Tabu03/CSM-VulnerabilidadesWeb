@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <?php
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
         include 'ConexionBD.php';
+}
+if(isset($_SESSION["user"])){
+    header("location: ./pages/inicio.php");
 }
 ?>
 <html>

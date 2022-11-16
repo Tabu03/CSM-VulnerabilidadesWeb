@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(../assets/images/fondo.jpg);
+    background-attachment: fixed;
+    background-size: 100%;
+}
+.container {
+    width: 800px;
+    background-color: rgb(43, 92, 226);
+    border: 2px solid black;
+    height: 500px;
+    font-size: 1.2rem;
+    padding-top: 100px;
+}
+
+.encabezado {
+    text-align: center;
+    color: white;
+}
+
+.botones {
+    display: flex;
+}
+
+.contbtn {
+    margin-left: 50px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    height: 30px;
+    width: 300px;
+    font-size: 1.2rem;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

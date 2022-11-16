@@ -22,7 +22,7 @@ if(isset($_GET["hidden"])){
 
 <body>
     <form method="GET" action="" class="cont__log">
-        <span class="log__text">Logeado por: <?php
+        <span class="log__text">User Logged: <?php
         echo $_SESSION["user"];
         ?></span>
         <input type="hidden" name="hidden" value="out">

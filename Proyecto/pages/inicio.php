@@ -4,6 +4,10 @@ session_start();
 if(!isset($_SESSION["user"])){
     header("location: ../index.php");
 }
+if(isset($_GET["hidden"])){
+    session_destroy();
+    header("location: ../index.php");
+}
 ?>
 <html>
 
@@ -13,14 +17,12 @@ if(!isset($_SESSION["user"])){
 </head>
 
 <body>
-    <form action="<?php
-        session_destroy();
-        $_SERVER["PHP_SELF"];
-    ?>" class="cont__log">
+    <form method="GET" action="" class="cont__log">
         <span class="log__text">Logeado por: <?php
         echo $_SESSION["user"];
         ?></span>
-        <button class="boton boton__log">Log out</button>
+        <input type="hidden" name="hidden" value="out">
+        <input type="submit" name="LogOut" value="Log out" class="boton boton__log">
     </form>
     <div class="container">
         <h1 class="encabezado">Bienvenido al Goliath National Bank</h1>

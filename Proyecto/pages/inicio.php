@@ -20,6 +20,7 @@ if(isset($_GET["hidden"])){
 </head>
 
 <body>
+    <div class="container">
     <form method="GET" action="" class="cont__log">
         <span class="log__text">Logeado por: <?php
         echo $_SESSION["user"];
@@ -27,7 +28,6 @@ if(isset($_GET["hidden"])){
         <input type="hidden" name="hidden" value="out">
         <input type="submit" name="LogOut" value="Log out" class="boton boton__log">
     </form>
-    <div class="container">
         <h1 class="encabezado">Bienvenido al Goliath National Bank</h1>
         <div class="botones">
             <div class="contbtn">

@@ -3,15 +3,17 @@ body{
     padding: 0;
     background-image: url(../assets/images/fondo.jpg);
     background-attachment: fixed;
-    background-size: 100%;
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    
+    overflow-x:hidden;
+    overflow-y:hidden;
 }
 .container {
-    width: 800px;
-    background-color: rgb(43, 92, 226);
-    border: 2px solid black;
-    height: 500px;
+
+    width: 100vw;
+    height: 100vh;
     font-size: 1.2rem;
-    padding-top: 100px;
 }
 
 .encabezado {
@@ -24,18 +26,23 @@ body{
 }
 
 .contbtn {
-    margin-left: 50px;
+    margin-left: 22vw;
     margin-top: 100px;
     display: flex;
     flex-direction: column;
 }
 
 .btn {
-    height: 30px;
+    height: 150px;
     width: 300px;
     font-size: 1.2rem;
     background-color: white;
     color: black;
     border-radius: 10px;
     margin-bottom: 20px;
+}
+.cont__log{
+    position: relative;
+    top: 2%;
+    left: 80%;
 }

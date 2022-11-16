@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+session_start();
+include '../ConexionBD.php';
+addCliente('select * from users', $cadenaConexion);
+if(!isset($_SESSION["user"])){
+    header("location: ../index.php");
+}
+?>
 <html lang="es">
 
 <head>
@@ -10,10 +18,15 @@
 </head>
 
 <body>
-    <div class="cont__log">
-        <span class="log__text">Logeado por:</span>
+    <form action="<?php
+        session_destroy();
+        $_SERVER["PHP_SELF"];
+    ?>" class="cont__log">
+        <span class="log__text">Logeado por: <?php
+        echo $_SESSION["user"];
+        ?></span>
         <button class="boton boton__log">Log out</button>
-    </div>
+    </form>
     <table class="table">
         <tr class="table__head">
             <td>ID_Cliente</td>

@@ -20,7 +20,6 @@ function inicioSesion($consulta, $cadenaConexion, $usuario, $pass) {
     $ins = $consulta;
     $result = $bd->query($ins);
     if($result->rowCount()===1) {
-        session_start();
         $_SESSION["user"]=$usuario;
     }
 }
@@ -30,18 +29,24 @@ function addCliente($consulta, $cadenaConexion) {
     $bd->beginTransaction();
     $ins = $consulta;
     $result = $bd->query($ins);
-    
-}
-
-function sesion(){
-    if(isset($_SESSION["user"])){
-        header ("Location:./pages/inicio.php");
-    }
-}
-
-
-echo "<table class='table'>";
+    echo "<table class='table'>";
+    echo "<tr class='table__head'>
+            <td>ID_Cliente</td>
+            <td>Nombre_Cliente</td>
+            <td>Saldo</td>
+        </tr>";
     foreach ($result as $fila){
-        echo "<tr><td>".$fila["ID"]."</td><td>".$fila["USER"]."</td><td>".$fila["SALDO"]."</td></tr>";
+        echo "<tr class='table__cont'><td>".$fila["ID"]."</td><td>".$fila["USER"]."</td><td>".$fila["SALDO"]."</td></tr>";
     }
     echo "</table>";
+}
+/*
+function sesion(){
+    if(isset($_SESSION["user"])){
+        header ("Location:./pages/movimientos.php");
+    }
+}
+*/
+/*
+
+*/

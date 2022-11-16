@@ -13,6 +13,15 @@ if(!isset($_SESSION["user"])){
 </head>
 
 <body>
+    <form action="<?php
+        session_destroy();
+        $_SERVER["PHP_SELF"];
+    ?>" class="cont__log">
+        <span class="log__text">Logeado por: <?php
+        echo $_SESSION["user"];
+        ?></span>
+        <button class="boton boton__log">Log out</button>
+    </form>
     <div class="container">
         <h1 class="encabezado">Bienvenido al Goliath National Bank</h1>
         <div class="botones">

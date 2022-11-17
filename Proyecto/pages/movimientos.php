@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include '../ConexionBD.php';
+include '../scripts/ConexionBD.php';
 if(!isset($_SESSION["user"])){
     header("location: ../index.php");
 }

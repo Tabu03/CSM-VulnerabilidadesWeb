@@ -2,7 +2,7 @@
 <?php
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        include 'ConexionBD.php';
+        include 'scripts/ConexionBD.php';
         inicioSesion('select * from users where PASSWORD = sha1("'.$pass.'")&&USER="'.$usuario.'";', $cadenaConexion, $usuario, $pass);
 }
 if(isset($_SESSION["user"])){

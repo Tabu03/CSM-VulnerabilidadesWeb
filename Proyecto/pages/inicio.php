@@ -8,7 +8,13 @@ if(isset($_GET["hidden"])){
     session_destroy();
     header("location: ../index.php");
 }
+if(isset($_SESSION["LEVEL"])){
+    if($_SESSION["LEVEL"]!=3){
+        header("location: ../index.php");
+    }
+}
 ?>
+
 <html>
 
 <head>

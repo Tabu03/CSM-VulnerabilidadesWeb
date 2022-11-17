@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/CSM-VulnerabilidadesWeb/Proyecto/pages/movimientos.php</file>
-            <file>file:/C:/xampp/htdocs/CSM-VulnerabilidadesWeb/Proyecto/ConexionBD.php</file>
             <file>file:/C:/xampp/htdocs/CSM-VulnerabilidadesWeb/Proyecto/index.php</file>
-            <file>file:/C:/xampp/htdocs/CSM-VulnerabilidadesWeb/Proyecto/base.txt</file>
+            <file>file:/C:/xampp/htdocs/CSM-VulnerabilidadesWeb/Proyecto/scripts/ConexionBD.php</file>
             <file>file:/C:/xampp/htdocs/CSM-VulnerabilidadesWeb/Proyecto/pages/inicio.php</file>
         </group>
     </open-files>

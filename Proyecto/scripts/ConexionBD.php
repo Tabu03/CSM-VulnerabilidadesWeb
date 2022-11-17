@@ -2,7 +2,7 @@
 
 $bd;
 $permitirInstancianueva;
-$cadenaConexion = 'mysql:dbname=proyecto;host=127.0.0.1';
+$cadenaConexion = 'mysql:dbname=gnb;host=127.0.0.1';
 $usuario = filter_input(INPUT_POST, "usuario");
 $pass = filter_input(INPUT_POST, "clave");
 
@@ -19,8 +19,12 @@ function inicioSesion($consulta, $cadenaConexion, $usuario, $pass) {
     $bd->beginTransaction();
     $ins = $consulta;
     $result = $bd->query($ins);
+    
     if($result->rowCount()===1) {
         $_SESSION["user"]=$usuario;
+        foreach ($result as $level){
+            $_SESSION["LEVEL"]=$level["LEVEL"];
+        }
     }
 }
 
@@ -40,13 +44,3 @@ function addCliente($consulta, $cadenaConexion) {
     }
     echo "</table>";
 }
-/*
-function sesion(){
-    if(isset($_SESSION["user"])){
-        header ("Location:./pages/movimientos.php");
-    }
-}
-*/
-/*
-
-*/

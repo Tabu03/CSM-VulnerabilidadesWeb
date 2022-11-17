@@ -9,6 +9,7 @@ if(isset($_GET["hidden"])){
     session_destroy();
     header("location: ../index.php");
 }
+print_r($_SESSION["LEVEL"]);
 ?>
 <html lang="es">
 

@@ -1,16 +1,4 @@
-body{
-    margin: 0;
-    padding: 0;
-    background-image: url(../assets/images/fondo.jpg);
-    background-attachment: fixed;
-    background-size: 100vw 100vh;
-    background-repeat: no-repeat;
-    
-    overflow-x:hidden;
-    overflow-y:hidden;
-}
 .container {
-
     width: 100vw;
     height: 100vh;
     font-size: 1.2rem;
@@ -18,7 +6,6 @@ body{
 
 .encabezado {
     text-align: center;
-    color: white;
 }
 
 .botones {

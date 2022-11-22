@@ -13,8 +13,21 @@ if(isset($_SESSION["LEVEL"])){
         header("location: ../index.php");
     }
 }
+    $tema = (int)$_COOKIE["temaGNB"];
+    //si la cookie no existe    
+    if(isset($_GET["cambiar"])){
+        
+        if($tema == 1){
+            setcookie("temaGNB","0");
+            header("location:$_SERVER[PHP_SELF]");
+            
+        }else if($tema == 0){
+            setcookie("temaGNB","1");
+            header("location:$_SERVER[PHP_SELF]");
+        }   
+    }
+    echo "<br><a href='?cambiar=true'>Cambiar tema</a>";
 ?>
-
 <html>
 
 <head>
@@ -23,6 +36,12 @@ if(isset($_SESSION["LEVEL"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INICIO</title>
     <link rel="stylesheet" href="../css/inicio.css">
+    <link rel="stylesheet" href="../css/<?php 
+        if($tema == 0){
+            echo "claro";
+        }else{
+            echo "oscuro";
+        }?>.css" type="text/css" media="all">
 </head>
 
 <body>

@@ -44,3 +44,53 @@ function addCliente($consulta, $cadenaConexion) {
     }
     echo "</table>";
 }
+
+function insertar($cadenaConexion, $usuario, $password){
+	try{
+		$bd=new PDO($cadenaConexion, $usuaio, $pass);
+		$insert="insert into users (id, user, password, level) values (id:=id, user:=user, password:=password, level:=level)";
+		$result=$bd->query($insert);
+
+		if($result){
+			echo "Se ha insertado correctamente";
+			echo "Fila (s) insertadas: ".$result->rowCount()."<br>";
+		} else {
+			print_r($bd->errorinfo());
+		}
+		
+		echo "Codigo insertado: ".($bd->lastInsertId()."<br>");
+		$bd=null;
+	}
+}
+
+function borrar($cadenaConexion, $usuario, $password){
+	try{
+		$bd=new PDO($cadenaConexion, $usuaio, $pass);
+		$delete="delete from users where id:=id";
+		$result=$bd->query($delete);
+
+		if($result){
+			echo "Se ha borrado correctamente";
+			echo "Fila (s) borradas: ".$result->rowCount()."<br>";
+		} else {
+			print_r($bd->errorinfo());
+		}
+		$bd=null;
+	}
+}
+
+function modificar($cadenaConexion, $usuario, $password){
+	try{
+		$bd=new PDO($cadenaConexion, $usuaio, $pass);
+		$update="update users set rol:=rol where rol:=rol";
+		$result=$bd->query($update);
+
+		if($result){
+			echo "Se ha modificado correctamente";
+			echo "Fila (s) actualizadas: ".$result->rowCount()."<br>";
+		} else {
+			print_r($bd->errorinfo());
+		}
+		$bd=null;
+	}
+}

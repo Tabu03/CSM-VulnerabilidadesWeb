@@ -10,7 +10,7 @@ if(isset($_GET["hidden"])){
     header("location: ../index.php");
 }
 if(isset($_SESSION["LEVEL"])){
-    if($_SESSION["LEVEL"]!=2){
+    if($_SESSION["LEVEL"]!=1){
         header("location: ../index.php");
     }
 }

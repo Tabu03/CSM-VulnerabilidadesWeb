@@ -65,24 +65,9 @@ if(!isset($_COOKIE["temaGNB"]))
     </form>
     <?php
     addCliente('select * from users', $cadenaConexion);
-
+    transacciones('select * from moves', $cadenaConexion)
     ?>
-    <table class="table">
-        <tr class="table__head">
-            <td>ID_Transacción</td>
-            <td>ID_Cliente</td>
-            <td>Saldo modificado</td>
-            <td>Fecha</td>
-            <td>Descripción</td>
-        </tr>
-        <tr class="table__cont">
-            <td>sgd</td>
-            <td>dfg</td>
-            <td>dfg modificado</td>
-            <td>dfhf</td>
-            <td>dhgf</td>
-        </tr>
-    </table>
+    
     <div class="botones">
         <button class="boton">Añadir cliente</button>
         <button class="boton">Modificar cliente</button>

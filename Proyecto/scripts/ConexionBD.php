@@ -45,6 +45,39 @@ function addCliente($consulta, $cadenaConexion) {
     echo "</table>";
 }
 
+
+function transacciones($consulta, $cadenaConexion) {
+    $bd = new PDO($cadenaConexion, "root", "");
+    $bd->beginTransaction();
+    $ins = $consulta;
+    $result = $bd->query($ins);
+    echo "<table class='table'>";
+    if($_COOKIE["language"]==0){
+    echo '<tr class="table__head">
+            <td>ID_Transacción</td>
+            <td>ID_Cliente</td>
+            <td>Saldo modificado</td>
+            <td>Fecha</td>
+            <td>Descripción</td>
+        </tr>';
+    }else{
+        echo '<tr class="table__head">
+            <td>ID_Transaction</td>
+            <td>ID_Client</td>
+            <td>Account balance</td>
+            <td>Date</td>
+            <td>Description</td>
+        </tr>';
+    }
+    foreach ($result as $fila){
+        echo "<tr class='table__cont'><td>".$fila["ID_TRANS"]."</td><td>".$fila["USER_ID"]."</td><td>".
+                $fila["CANTIDAD"]."</td><td>".
+                $fila["FECHA"]."</td><td>".
+                $fila["MESSAGE"]."</td></tr>";
+    }
+    echo "</table>";
+}
+
 function insertar($cadenaConexion, $usuario, $password){
 	try{
 		$bd=new PDO($cadenaConexion, $usuaio, $pass);

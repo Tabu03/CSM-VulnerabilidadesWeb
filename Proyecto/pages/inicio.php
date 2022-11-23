@@ -30,13 +30,11 @@ if(isset($_COOKIE["language"])){
             
         }   
     }
-}
-    
-        
+}    
     echo "<br><a href='?cambiarLanguage=true'>Cambiar Idioma</a>";
 
-
-        //no olvidar hacer casting a entero
+if(isset($_COOKIE["temaGNB"])){
+    //no olvidar hacer casting a entero
         $tema = (int)$_COOKIE["temaGNB"];
         setcookie(time()+3600 *24);
         
@@ -52,6 +50,8 @@ if(isset($_COOKIE["language"])){
             header("location:$_SERVER[PHP_SELF]");
         }   
     }
+}
+        
     echo "<br><a href='?cambiarTema=true'>Cambiar tema</a>";
 ?>
 <html>

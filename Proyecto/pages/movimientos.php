@@ -65,7 +65,7 @@ if(!isset($_COOKIE["temaGNB"]))
     </form>
     <?php
     addCliente('select * from users', $cadenaConexion);
-    transacciones('select * from moves', $cadenaConexion)
+    transacciones('select * from moves', $cadenaConexion);
     ?>
     
     <div class="botones">

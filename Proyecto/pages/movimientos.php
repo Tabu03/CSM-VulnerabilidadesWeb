@@ -15,6 +15,7 @@ if(isset($_SESSION["LEVEL"])){
     }
 }
 
+
 if(isset($_COOKIE["language"])){
     $lenguaje = (int)$_COOKIE["language"];
         setcookie(time()+3600 *24);
@@ -82,15 +83,37 @@ if(isset($_COOKIE["temaGNB"])){
         <input type="submit" name="LogOut" value="Log out" class="boton boton__log">
     </form>
     <?php
-    addCliente('select * from users', $cadenaConexion);
-    transacciones('select * from moves', $cadenaConexion);
+    addCliente($cadenaConexion);
+    transacciones($cadenaConexion);
     ?>
     
     <div class="botones">
-        <button class="boton">Añadir cliente</button>
-        <button class="boton">Modificar cliente</button>
-        <button class="boton">Borrar cliente</button>
+        <button class="boton" id="clientAdd">Client add</button>
+        <button class="boton">Client modify</button>
+        <button class="boton">Erase client</button>
     </div>
+
+    <form action="" method="POST" class="form" id="formAddC">
+        <h1 class="encabezado">Enter a user</h1>
+        <div class="form__contenido">
+            <label class="user" for="">User</label>
+            <input class="input__content" name="usuario" type="text" placeholder="Enter a username">
+        </div>
+        <div class="form__contenido">
+            <label class="password" for="">Password</label>
+            <input class="input__content" name="pass" type="password" placeholder="Enter a password">
+        </div>
+        <div class="form__contenido">
+            <label class="level" for="">Level</label>
+            <input class="input__content" name="level" type="number" placeholder="Enter a level">
+        </div>
+        <div class="form__contenido">
+            <label class="balance" for="">Balance</label>
+            <input class="input__content" name="Balance" type="number" placeholder="Enter a balance">
+        </div>
+        <input type="submit" value="Crear">
+    </form>
+    <script src="../scripts/movimientos.js"></script>
 </body>
 
 </html>

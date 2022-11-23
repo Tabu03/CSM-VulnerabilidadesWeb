@@ -3,7 +3,7 @@
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
         include 'scripts/ConexionBD.php';
-        inicioSesion('select * from users where PASSWORD = sha1("'.$pass.'")&&USER="'.$usuario.'";', $cadenaConexion, $usuario, $pass);
+        inicioSesion($cadenaConexion, $usuario, $pass);
 }
 if(isset($_SESSION["user"])&&isset($_SESSION["LEVEL"])){
     switch ($_SESSION["LEVEL"]){

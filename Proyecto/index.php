@@ -13,9 +13,6 @@ if(isset($_SESSION["user"])&&isset($_SESSION["LEVEL"])){
         case 2:
                 header("location: pages/movimientos.php");
             break;
-        case 3:
-                header("location: pages/inicio.php");
-            break;
     }
 }
 ?>

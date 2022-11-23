@@ -34,11 +34,20 @@ function addCliente($consulta, $cadenaConexion) {
     $ins = $consulta;
     $result = $bd->query($ins);
     echo "<table class='table'>";
+    if($_COOKIE["language"]===0){
     echo "<tr class='table__head'>
             <td>ID_Cliente</td>
             <td>Nombre_Cliente</td>
             <td>Saldo</td>
         </tr>";
+    }
+    else{
+        echo "<tr class='table__head'>
+            <td>ID_Client</td>
+            <td>Client_Name</td>
+            <td>Balance</td>
+        </tr>";
+    }
     foreach ($result as $fila){
         echo "<tr class='table__cont'><td>".$fila["ID"]."</td><td>".$fila["USER"]."</td><td>".$fila["SALDO"]."</td></tr>";
     }
@@ -52,7 +61,7 @@ function transacciones($consulta, $cadenaConexion) {
     $ins = $consulta;
     $result = $bd->query($ins);
     echo "<table class='table'>";
-    if($_COOKIE["language"]==0){
+    if($_COOKIE["language"]===0){
     echo '<tr class="table__head">
             <td>ID_Transacción</td>
             <td>ID_Cliente</td>

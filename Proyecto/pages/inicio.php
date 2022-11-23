@@ -63,7 +63,7 @@ if(!isset($_COOKIE["temaGNB"]))
         <input type="submit" name="LogOut" value="Log out" class="boton boton__log">
     </form>
         <?php
-        if ($_COOKIE["language"]==0){
+        if ($_COOKIE["language"]===0){
         echo '<h1 class="encabezado">Bienvenido al Goliath National Bank</h1>
         <div class="botones">
             <div class="contbtn">

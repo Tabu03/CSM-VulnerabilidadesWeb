@@ -62,19 +62,27 @@ if(!isset($_COOKIE["temaGNB"]))
         <input type="hidden" name="hidden" value="out">
         <input type="submit" name="LogOut" value="Log out" class="boton boton__log">
     </form>
-        <h1 class="encabezado">Bienvenido al Goliath National Bank</h1>
+        <?php
+        if ($_COOKIE["language"]==0){
+        echo '<h1 class="encabezado">Bienvenido al Goliath National Bank</h1>
         <div class="botones">
             <div class="contbtn">
                 <button class="btn">Ingresar dinero</button>
                 <button class="btn">Sacar dinero</button>
                 <button class="btn">Comprobar extracto de la cuenta</button>
             </div>
+        </div>';
+        }else{
+        echo '<h1 class="encabezado">Welcome to the Goliath National Bank</h1>
+        <div class="botones">
             <div class="contbtn">
-                <button class="btn">Realizar transferencia</button>
-                <button class="btn">Ver últimos movimientos</button>
-                <button class="btn">Sacar dinero sin tarjeta</button>
+                <button class="btn">Deposit money</button>
+                <button class="btn">Withdraw cash</button>
+                <button class="btn">Check the cash balance</button>
             </div>
-        </div>
+        </div>';
+        }
+        ?>
     </div>
 </body>
 

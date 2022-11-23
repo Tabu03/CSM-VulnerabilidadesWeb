@@ -6,9 +6,10 @@ const toggleMostrar=()=>{
     if(formulario.style.display!="none"){
         formulario.style.display="none"
     }else{
-        formulario.style.display="block"
+        formulario.style.display="flex"
     }
 }
+
 
 addClient.addEventListener("click",toggleMostrar)
 document.addEventListener("DOMContentLoaded",toggleMostrar)

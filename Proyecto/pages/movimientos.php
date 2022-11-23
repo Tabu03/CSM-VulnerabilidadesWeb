@@ -2,6 +2,10 @@
 <?php
 session_start();
 include '../scripts/ConexionBD.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    insertar($cadenaConexion);
+}
 if(!isset($_SESSION["user"])){
     header("location: ../index.php");
 }
@@ -93,7 +97,9 @@ if(isset($_COOKIE["temaGNB"])){
         <button class="boton">Erase client</button>
     </div>
 
-    <form action="" method="POST" class="form" id="formAddC">
+    <form action="<?php echo
+            $_SERVER["PHP_SELF"];
+            ?>" method="POST" class="form" id="formAddC">
         <h1 class="encabezado">Enter a user</h1>
         <div class="form__contenido">
             <label class="user" for="">User</label>
@@ -109,7 +115,7 @@ if(isset($_COOKIE["temaGNB"])){
         </div>
         <div class="form__contenido">
             <label class="balance" for="">Balance</label>
-            <input class="input__content" name="Balance" type="number" placeholder="Enter a balance">
+            <input class="input__content" name="balance" type="number" placeholder="Enter a balance">
         </div>
         <input type="submit" value="Crear">
     </form>

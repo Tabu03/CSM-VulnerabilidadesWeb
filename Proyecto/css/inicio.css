@@ -20,6 +20,7 @@
     justify-content: space-around;
 }
 
+
 .btn {
     height: 150px;
     width: 300px;
@@ -48,7 +49,17 @@
      
 }
 
+.boton {
+    background-color: rgb(43, 92, 226);
+    border-radius: 20px;
+    width: 200px;
+    height: 50px;
+    font-size: 1rem;
+    color: white;
+}
+
 .boton__log{
+    
     margin-top: 5px;
     width: 130px;
     height: 30px;

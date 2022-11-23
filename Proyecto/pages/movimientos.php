@@ -111,7 +111,10 @@ if(isset($_COOKIE["temaGNB"])){
         </div>
         <div class="form__contenido">
             <label class="level" for="">Level</label>
-            <input class="input__content" name="level" type="number" placeholder="Enter a level">
+            <select class="input__content" name="level">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
         </div>
         <div class="form__contenido">
             <label class="balance" for="">Balance</label>

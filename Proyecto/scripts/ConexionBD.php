@@ -107,7 +107,7 @@ function insertar($cadenaConexion){
     }
 }
 
-function borrar($cadenaConexion, $usuario, $password){
+/*function borrar($cadenaConexion, $usuario, $password){
 	try{
 		$bd=new PDO($cadenaConexion, $usuaio, $pass);
 		$delete="delete from users where id=$id";
@@ -124,9 +124,9 @@ function borrar($cadenaConexion, $usuario, $password){
         catch (Exception $e){
         echo "Fallo al conectar con la base de datos";
     }
-}
+}*/
 
-function modificar($cadenaConexion, $usuario, $password){
+/*function modificar($cadenaConexion, $usuario, $password){
 	try{
 		$bd=new PDO($cadenaConexion, $usuaio, $pass);
 		$update="update users set saldo=saldo-$saldo where ID=2";
@@ -143,4 +143,4 @@ function modificar($cadenaConexion, $usuario, $password){
         catch (Exception $e){
         echo "Fallo al conectar con la base de datos";
     }
-}
+}*/

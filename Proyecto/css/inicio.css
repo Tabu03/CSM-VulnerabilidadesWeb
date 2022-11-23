@@ -31,6 +31,28 @@
 }
 .cont__log{
     position: relative;
-    top: 2%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+    top: 4%;
     left: 80%;
+    margin-bottom: 50px;
+}
+@media (max-width: 1200px){
+    
+    .cont__log{
+        left: 70%;
+    }
+     
+}
+
+.boton__log{
+    margin-top: 5px;
+    width: 130px;
+    height: 30px;
+}
+.log__text{
+    font-family: sans-serif;
 }

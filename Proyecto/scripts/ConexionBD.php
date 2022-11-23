@@ -14,24 +14,23 @@ $pass = filter_input(INPUT_POST, "clave");
  * la sesion comienza
  * 
  */
-function inicioSesion($consulta, $cadenaConexion, $usuario, $pass) {
+function inicioSesion($cadenaConexion, $usuario, $pass) {
     $bd = new PDO($cadenaConexion, "root", "");
-    $bd->beginTransaction();
-    $ins = $consulta;
-    $result = $bd->query($ins);
+    $ins=$bd->prepare("select * from users where PASSWORD = sha1(?)&&USER=?");
+    $ins->execute(array($pass,$usuario));
     
-    if($result->rowCount()===1) {
+    if($ins->rowCount()===1) {
         $_SESSION["user"]=$usuario;
-        foreach ($result as $level){
+        foreach ($ins as $level){
             $_SESSION["LEVEL"]=$level["LEVEL"];
         }
     }
 }
 
-function addCliente($consulta, $cadenaConexion) {
+function addCliente($cadenaConexion) {
     $bd = new PDO($cadenaConexion, "root", "");
     $bd->beginTransaction();
-    $ins = $consulta;
+    $ins = 'select * from users';
     $result = $bd->query($ins);
     echo "<table class='table'>";
     if($_COOKIE["language"]==0){
@@ -55,10 +54,10 @@ function addCliente($consulta, $cadenaConexion) {
 }
 
 
-function transacciones($consulta, $cadenaConexion) {
+function transacciones($cadenaConexion) {
     $bd = new PDO($cadenaConexion, "root", "");
     $bd->beginTransaction();
-    $ins = $consulta;
+    $ins = 'select * from moves';
     $result = $bd->query($ins);
     echo "<table class='table'>";
     if($_COOKIE["language"]==0){
@@ -87,7 +86,7 @@ function transacciones($consulta, $cadenaConexion) {
     echo "</table>";
 }
 
-function insertar($cadenaConexion, $usuario, $password){
+/*function insertar($cadenaConexion, $usuario, $password){
 	try{
 		$bd=new PDO($cadenaConexion, $usuaio, $pass);
 		$insert="insert into users values (ID,'$user', sha1('$passwd'), $level, $saldo)";
@@ -106,7 +105,7 @@ function insertar($cadenaConexion, $usuario, $password){
     catch (Exception $e){
         echo "Fallo al conectar con la base de datos";
     }
-}
+}*/
 
 function borrar($cadenaConexion, $usuario, $password){
 	try{

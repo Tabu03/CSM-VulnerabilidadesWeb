@@ -15,6 +15,16 @@ if(isset($_SESSION["user"])&&isset($_SESSION["LEVEL"])){
             break;
     }
 }
+if(!isset($_COOKIE["language"]))
+    {
+        setcookie("language","1", time() + 3600 *24,"/");
+    }
+    //si no es la primera vez que visitamos esa pagina
+    else{
+        //no olvidar hacer casting a entero
+        $lenguaje = (int)$_COOKIE["language"];
+        setcookie(time()+3600 *24);
+    }
 ?>
 <html>
     <head>

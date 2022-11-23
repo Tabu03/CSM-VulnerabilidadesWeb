@@ -14,6 +14,27 @@ if(isset($_SESSION["LEVEL"])){
         header("location: ../index.php");
     }
 }
+
+if(isset($_COOKIE["language"])){
+    $lenguaje = (int)$_COOKIE["language"];
+        setcookie(time()+3600 *24);
+        
+        if(isset($_GET["cambiarLanguage"])){
+        $lenguaje = (int)$_COOKIE["language"];
+        
+        if($lenguaje == 1){
+            setcookie("language","0");
+            header("location:$_SERVER[PHP_SELF]");
+            
+        }else {
+            setcookie("language","1");
+            header("location:$_SERVER[PHP_SELF]");
+            
+        }   
+    }
+}
+    echo "<br><a href='?cambiarLanguage=true'>Cambiar Idioma</a>";
+    
 if(!isset($_COOKIE["temaGNB"]))
     {
         setcookie("temaGNB","1", time() + 3600 *24);

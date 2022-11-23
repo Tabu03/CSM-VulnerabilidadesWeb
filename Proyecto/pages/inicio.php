@@ -13,17 +13,34 @@ if(isset($_SESSION["LEVEL"])){
         header("location: ../index.php");
     }
 }
-if(!isset($_COOKIE["temaGNB"]))
-    {
-        setcookie("temaGNB","1", time() + 3600 *24);
+if(isset($_COOKIE["language"])){
+    $lenguaje = (int)$_COOKIE["language"];
+        setcookie(time()+3600 *24);
+        
+        if(isset($_GET["cambiarLanguage"])){
+        $lenguaje = (int)$_COOKIE["language"];
+        
+        if($lenguaje == 1){
+            setcookie("language","0");
+            header("location:$_SERVER[PHP_SELF]");
+            
+        }else {
+            setcookie("language","1");
+            header("location:$_SERVER[PHP_SELF]");
+            
+        }   
     }
-    //si no es la primera vez que visitamos esa pagina
-    else{
+}
+    
+        
+    echo "<br><a href='?cambiarLanguage=true'>Cambiar Idioma</a>";
+
+
         //no olvidar hacer casting a entero
         $tema = (int)$_COOKIE["temaGNB"];
         setcookie(time()+3600 *24);
-    }
-        if(isset($_GET["cambiar"])){
+        
+        if(isset($_GET["cambiarTema"])){
         $tema = (int)$_COOKIE["temaGNB"];
         
         if($tema == 1){
@@ -35,7 +52,7 @@ if(!isset($_COOKIE["temaGNB"]))
             header("location:$_SERVER[PHP_SELF]");
         }   
     }
-    echo "<br><a href='?cambiar=true'>Cambiar tema</a>";
+    echo "<br><a href='?cambiarTema=true'>Cambiar tema</a>";
 ?>
 <html>
 
@@ -63,7 +80,7 @@ if(!isset($_COOKIE["temaGNB"]))
         <input type="submit" name="LogOut" value="Log out" class="boton boton__log">
     </form>
         <?php
-        if ($_COOKIE["language"]===0){
+        if ($_COOKIE["language"]==0){
         echo '<h1 class="encabezado">Bienvenido al Goliath National Bank</h1>
         <div class="botones">
             <div class="contbtn">

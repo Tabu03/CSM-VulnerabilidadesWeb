@@ -1,7 +1,6 @@
 <?php
 
 $bd;
-$permitirInstancianueva;
 $cadenaConexion = 'mysql:dbname=gnb;host=127.0.0.1';
 $usuario = filter_input(INPUT_POST, "usuario");
 $pass = filter_input(INPUT_POST, "clave");
@@ -86,26 +85,27 @@ function transacciones($cadenaConexion) {
     echo "</table>";
 }
 
-/*function insertar($cadenaConexion, $usuario, $password){
-	try{
-		$bd=new PDO($cadenaConexion, $usuaio, $pass);
-		$insert="insert into users values (ID,'$user', sha1('$passwd'), $level, $saldo)";
-		$result=$bd->query($insert);
-
-		if($result){
-			echo "Se ha insertado correctamente";
-			echo "Fila (s) insertadas: ".$result->rowCount()."<br>";
-		} else {
-			print_r($bd->errorinfo());
-		}
+function insertar($cadenaConexion){
+	$campos=[filter_input(INPUT_POST, "usuario"),
+            filter_input(INPUT_POST, "pass"),
+            filter_input(INPUT_POST, "level"),
+            filter_input(INPUT_POST, "balance")];
+        try{
+		$bd=new PDO($cadenaConexion, "root", "");
+                $select=$bd->prepare("select * from users where user=?");
+                $select->execute(array($campos[0]));
+                
+                if ($select->rowCount()==0){
+                    $insert=$bd->prepare("insert into users values(ID,?, sha1(?), ?, ?)");
+                    $insert->execute(array($campos[0],$campos[1],$campos[2],$campos[3]));
+                }
 		
-		echo "Codigo insertado: ".($bd->lastInsertId()."<br>");
 		$bd=null;
 	}
     catch (Exception $e){
         echo "Fallo al conectar con la base de datos";
     }
-}*/
+}
 
 function borrar($cadenaConexion, $usuario, $password){
 	try{

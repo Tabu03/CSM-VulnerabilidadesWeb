@@ -28,7 +28,9 @@ td{
 }
 
 .botones {
-    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .boton {
@@ -38,7 +40,6 @@ td{
     height: 50px;
     font-size: 1rem;
     color: white;
-    margin-left: 260px;
 }
 
 .boton__log {

@@ -1,9 +1,3 @@
-.cont__log {
-    text-align: end;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
 .table {
     border-collapse: collapse;
     width: 100%;
@@ -33,15 +27,30 @@ td{
     justify-content: space-evenly;
 }
 
-.boton {
-    background-color: rgb(43, 92, 226);
-    border-radius: 20px;
-    width: 200px;
-    height: 50px;
-    font-size: 1rem;
-    color: white;
+.cont__log{
+    position: relative;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+    top: 4%;
+    left: 80%;
+    margin-bottom: 50px;
+}
+@media (max-width: 1200px){
+    
+    .cont__log{
+        left: 70%;
+    }
+     
 }
 
-.boton__log {
-    margin-left: 160px;
+.boton__log{
+    margin-top: 5px;
+    width: 130px;
+    height: 30px;
+}
+.log__text{
+    font-family: sans-serif;
 }

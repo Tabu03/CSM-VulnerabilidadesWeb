@@ -48,7 +48,7 @@ function addCliente($consulta, $cadenaConexion) {
 function insertar($cadenaConexion, $usuario, $password){
 	try{
 		$bd=new PDO($cadenaConexion, $usuaio, $pass);
-		$insert="insert into users (id, user, password, level) values (id:=id, user:=user, password:=password, level:=level)";
+		$insert="insert into users values (ID,'$user', sha1('$passwd'), $level, $saldo)";
 		$result=$bd->query($insert);
 
 		if($result){
@@ -61,12 +61,15 @@ function insertar($cadenaConexion, $usuario, $password){
 		echo "Codigo insertado: ".($bd->lastInsertId()."<br>");
 		$bd=null;
 	}
+    catch (Exception $e){
+        echo "Fallo al conectar con la base de datos";
+    }
 }
 
 function borrar($cadenaConexion, $usuario, $password){
 	try{
 		$bd=new PDO($cadenaConexion, $usuaio, $pass);
-		$delete="delete from users where id:=id";
+		$delete="delete from users where id=$id";
 		$result=$bd->query($delete);
 
 		if($result){
@@ -77,12 +80,15 @@ function borrar($cadenaConexion, $usuario, $password){
 		}
 		$bd=null;
 	}
+        catch (Exception $e){
+        echo "Fallo al conectar con la base de datos";
+    }
 }
 
 function modificar($cadenaConexion, $usuario, $password){
 	try{
 		$bd=new PDO($cadenaConexion, $usuaio, $pass);
-		$update="update users set rol:=rol where rol:=rol";
+		$update="update users set saldo=saldo-$saldo where ID=2";
 		$result=$bd->query($update);
 
 		if($result){
@@ -93,4 +99,7 @@ function modificar($cadenaConexion, $usuario, $password){
 		}
 		$bd=null;
 	}
+        catch (Exception $e){
+        echo "Fallo al conectar con la base de datos";
+    }
 }

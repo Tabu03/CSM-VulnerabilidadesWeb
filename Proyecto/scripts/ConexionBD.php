@@ -126,21 +126,22 @@ function borrar($cadenaConexion){
     }
 }
 
-/*function modificar($cadenaConexion, $usuario, $password){
-	try{
-		$bd=new PDO($cadenaConexion, $usuaio, $pass);
-		$update="update users set saldo=saldo-$saldo where ID=2";
-		$result=$bd->query($update);
-
-		if($result){
-			echo "Se ha modificado correctamente";
-			echo "Fila (s) actualizadas: ".$result->rowCount()."<br>";
-		} else {
-			print_r($bd->errorinfo());
-		}
+function modificar($cadenaConexion){
+    $post=[filter_input(INPUT_POST, "saldo"),
+        filter_input(INPUT_POST, "usuarioID")];
+    try{
+		$bd=new PDO($cadenaConexion, "root", "");
+                $select=$bd->prepare("select * from users where id=?");
+                $select->execute(array($post[1]));
+                if($select->rowCount()>0){
+                    $update=$bd->prepare("update users set saldo=saldo+? where ID=?");
+                   
+                    $update->execute(array($post[0],$post[1]));
+                    $bd->commit();
+                }
 		$bd=null;
 	}
         catch (Exception $e){
         echo "Fallo al conectar con la base de datos";
     }
-}*/
+}

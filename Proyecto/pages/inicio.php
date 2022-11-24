@@ -1,6 +1,22 @@
 <!doctype html>
 <?php
 session_start();
+include '../scripts/ConexionBD.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    switch (filter_input(INPUT_POST, "nSecreto")){
+        case 1:
+            ingresarDinero($cadenaConexion);
+            break;
+        case 2:
+            sacarDinero($cadenaConexion);
+            break;
+        case 3:
+            borrar($cadenaConexion);
+            break;
+    }
+    
+}
 if(!isset($_SESSION["user"])){
     header("location: ../index.php");
 }
@@ -82,25 +98,91 @@ if(isset($_COOKIE["temaGNB"])){
         <?php
         if ($_COOKIE["language"]==0){
         echo '<h1 class="encabezado">Bienvenido al Goliath National Bank</h1>
+            
+        <div class="saldo">
+        <table class="saldo__tab">
+            <tr>
+                <td class="saldo__td--h">Saldo actual</td>
+            </tr>
+            <tr>
+                <td class="saldo__td--b">0</td>
+            </tr>
+        </table>
+        </div>
+        
         <div class="botones">
             <div class="contbtn">
-                <button class="btn">Ingresar dinero</button>
-                <button class="btn">Sacar dinero</button>
-                <button class="btn">Comprobar extracto de la cuenta</button>
+                <button name="Ing" class="btn" id="Ing">Ingresar dinero</button>
+                <button name="Sac" class="btn" id="Sac">Sacar dinero</button>
             </div>
         </div>';
+        
+        echo '<form action='.$_SERVER["PHP_SELF"].'method="POST" class="form" id="formIng">
+        <h1 class="encabezado">¿Cuanto dinero quieres ingresar?</h1>
+        <div class="form__contenido">
+            <label class="" for="Money">Cantidad</label>
+            <input class="input__content" name="saldo" type="number">
+        </div>
+        <input class="oculto" name="nSecreto" type="text" value="1">
+        <input class="form__btn" type="submit" value="Sacar">
+            </form>';
+        
+        echo '<form action='.$_SERVER["PHP_SELF"].'method="POST" class="form" id="formSac">
+        <h1 class="encabezado">¿Cuanto dinero quieres retirar?</h1>
+        <div class="form__contenido">
+            <label class="" for="Monew">Cantidad</label>
+            <input class="input__content" name="saldo" type="number">
+        </div>
+        <input class="oculto" name="nSecreto" type="text" value="2">
+        <input class="form__btn" type="submit" value="Ingresar">
+            </form>';
+        
         }else{
         echo '<h1 class="encabezado">Welcome to the Goliath National Bank</h1>
+        
+        <div class="saldo">
+        <table class="saldo__tab">
+            <tr>
+                <td class="saldo__td--h">Actual balance</td>
+            </tr>
+            <tr>
+                <td class="saldo__td--b">0</td>
+            </tr>
+        </table>
+        </div>
+
         <div class="botones">
             <div class="contbtn">
-                <button class="btn">Deposit money</button>
-                <button class="btn">Withdraw cash</button>
-                <button class="btn">Check the cash balance</button>
+                <button name="Ing" class="btn" id="Ing">Deposit money</button>
+                <button name="Sac" class="btn" id="Sac">Withdraw cash</button>
             </div>
         </div>';
+        
+        echo '<form action='.$_SERVER["PHP_SELF"].'method="POST" class="form" id="formIng">
+        <h1 class="encabezado">How much money do you want to deposit?</h1>
+        <div class="form__contenido">
+            <label class="" for="Money">Amount</label>
+            <input class="input__content" name="saldo" type="number">
+        </div>
+        <input class="oculto" name="nSecreto" type="text" value="1">
+        <input class="form__btn" type="submit" value="Deposit">
+            </form>';
+        
+        echo '<form action='.$_SERVER["PHP_SELF"].'method="POST" class="form" id="formSac">
+        <h1 class="encabezado">How much money do you want to withdraw?</h1>
+        <div class="form__contenido">
+            <label class="" for="Monew">Amount</label>
+            <input class="input__content" name="saldo" type="number">
+        </div>
+        <input class="oculto" name="nSecreto" type="text" value="2">
+        <input class="form__btn" type="submit" value="Draw">
+            </form>';
+        
         }
+
         ?>
     </div>
+    <script src="../scripts/inicio.js"></script>
 </body>
 
 </html>

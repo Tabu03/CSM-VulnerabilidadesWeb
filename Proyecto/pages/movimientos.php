@@ -120,7 +120,8 @@ if(isset($_COOKIE["temaGNB"])){
             <label class="balance" for="">Balance</label>
             <input class="input__content" name="balance" type="number" placeholder="Enter a balance">
         </div>
-        <input type="submit" value="Crear">
+        <input class="oculto" name="nSecreto" type="text" value="1">
+        <input class="form__btn" type="submit" value="Crear">
     </form>
     <script src="../scripts/movimientos.js"></script>
 </body>

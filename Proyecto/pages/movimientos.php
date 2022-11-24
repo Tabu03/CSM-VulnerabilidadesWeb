@@ -24,13 +24,13 @@ if(!isset($_SESSION["user"])){
     header("location: ../index.php");
 }
 
-//Detruir la sesion al pulsar el boton de log out
+//Destruir la sesion al pulsar el boton de log out
 if(isset($_GET["hidden"])){
     session_destroy();
     header("location: ../index.php");
 }
 
-//Comporbar el nivel del usuario
+//Comprobar el nivel del usuario
 if(isset($_SESSION["LEVEL"])){
     if($_SESSION["LEVEL"]!=1){
         header("location: ../index.php");

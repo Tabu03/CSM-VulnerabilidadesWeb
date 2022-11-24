@@ -93,8 +93,8 @@ if(isset($_COOKIE["temaGNB"])){
     
     <div class="botones">
         <button class="boton" id="clientAdd">Client add</button>
-        <button class="boton">Client modify</button>
-        <button class="boton">Erase client</button>
+        <button class="boton" id="modifyBalance">Client modify</button>
+        <button class="boton" id="deleteClient">Erase client</button>
     </div>
 
     <form action="<?php echo
@@ -123,6 +123,38 @@ if(isset($_COOKIE["temaGNB"])){
         <input class="oculto" name="nSecreto" type="text" value="1">
         <input class="form__btn" type="submit" value="Crear">
     </form>
+    
+    
+    <form action="<?php echo
+            $_SERVER["PHP_SELF"];
+            ?>" method="POST" class="form" id="formDel">
+        <h1 class="encabezado">Borrar usuario</h1>
+        <div class="form__contenido">
+            <label class="" for="">Id a borrar</label>
+            <input class="input__content" name="usuarioID" type="number">
+        </div>
+        <input class="oculto" name="nSecreto" type="text" value="2">
+        <input class="form__btn" type="submit" value="Eliminar">
+    </form>
+    
+    
+    <form action="<?php echo
+            $_SERVER["PHP_SELF"];
+            ?>" method="POST" class="form" id="formMod">
+        <h1 class="encabezado">Modify Balance</h1>
+        <div class="form__contenido">
+            <label class="" for="">Id</label>
+            <input class="input__content" name="usuarioID" type="number">
+        </div>
+        <div class="form__contenido">
+            <label class="" for="">Balance</label>
+            <input class="input__content" name="saldo" type="number">
+        </div>
+        <input class="oculto" name="nSecreto" type="text" value="2">
+        <input class="form__btn" type="submit" value="Change">
+    </form>
+    
+    
     <script src="../scripts/movimientos.js"></script>
 </body>
 

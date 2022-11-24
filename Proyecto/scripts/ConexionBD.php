@@ -1,12 +1,17 @@
 <?php
+/**
+ * Base de datos a la que nos conectamos en todas las funciones 
+ * esta declarada aqui de forma que no se comentara en los 
+ * comentarios individuales
+ */
 $cadenaConexion = 'mysql:dbname=gnb;host=127.0.0.1';
 
-/*
- * funcion inicioSesion(cadena de conexion)
+/**
+ * Funcion inicioSesion(cadena de conexion)
  * conecta a la base de datos y comprueba, si la consulta devuelve alguna
  * fila, significa que encontro el usuario y la contraseña, por lo tanto
  * la sesion comienza
- * 
+ * @param type $cadenaConexion
  */
 function inicioSesion($cadenaConexion) {
     $usuario = filter_input(INPUT_POST, "usuario");
@@ -22,7 +27,10 @@ function inicioSesion($cadenaConexion) {
         }
     }
 }
-
+/**
+ * 
+ * @param type $cadenaConexion
+ */
 function addCliente($cadenaConexion) {
     $bd = new PDO($cadenaConexion, "root", "");
     $bd->beginTransaction();
@@ -49,7 +57,10 @@ function addCliente($cadenaConexion) {
     echo "</table>";
 }
 
-
+/**
+ * 
+ * @param type $cadenaConexion
+ */
 function transacciones($cadenaConexion) {
     $bd = new PDO($cadenaConexion, "root", "");
     $bd->beginTransaction();
@@ -81,7 +92,13 @@ function transacciones($cadenaConexion) {
     }
     echo "</table>";
 }
-
+/**
+ * Se guardan los campos del POST en el array campos, conecta a la base de datos, prepara
+ * la consulta de la cual no sabemos el nombre del usuario a crea y la ejecutamos con el 
+ * primer campo que es el usuario, si el usuario no existe, es decir que la consulta devuelve
+ * 0 filas, se inserta en la base de datos con los valores del array $campos.
+ * @param type $cadenaConexion
+ */
 function insertar($cadenaConexion){
 	$campos=[filter_input(INPUT_POST, "usuario"),
             filter_input(INPUT_POST, "pass"),
@@ -106,7 +123,12 @@ function insertar($cadenaConexion){
         
     }
 }
-
+/**
+ * Se inicia la conexión a la base de datos, comprobamos que el user existe, si 
+ * existe, es decir las filas que devuelve son mayores que 0, entonces lo borramos, 
+ * solo si es un usuario común, es decir su level es 2.
+ * @param type $cadenaConexion
+ */
 function borrar($cadenaConexion){
 	try{
 		$bd=new PDO($cadenaConexion, "root", "");
@@ -127,7 +149,13 @@ function borrar($cadenaConexion){
             
     }
 }
-
+/**
+ * Se guardan los campos del post en el array $post y se inicia la conexión 
+ * a la base de datos, comprobamos que el user existe, si existe, es decir 
+ * las filas que devuelve son mayores que 0, entonces lo actualizamos con 
+ * el nuevo saldo, usando el id del usuario para identificarlo.
+ * @param type $cadenaConexion
+ */
 function modificar($cadenaConexion){
     $post=[filter_input(INPUT_POST, "saldo"),
         filter_input(INPUT_POST, "usuarioID")];
@@ -147,7 +175,13 @@ function modificar($cadenaConexion){
             
     }
 }
-
+/**
+ * Primero cogemos el nombre del usuario de la sesión y el saldo introducido en el formulario.
+ * Conectamos y preparamos la consulta para sacar la id del usuario y el saldo actual.
+ * Nos tiene que devolver una fila, si nos devuelve algo, por lo tanto guardamos en saldoActual el saldo actual y en id el id del cliente
+ * Si el saldo que queremos sacar es mayor que el actual no realiza el update, si no lo realiza e inserta en moves la operacion realizada
+ * @param type $cadenaConexion
+ */
 function sacarDinero($cadenaConexion){
     $post=[$_SESSION["user"],
         filter_input(INPUT_POST, "saldo")];
@@ -173,7 +207,13 @@ function sacarDinero($cadenaConexion){
 }
 
 
-
+/**
+ * Primero cogemos el nombre del usuario de la sesión y el saldo introducido en el formulario.
+ * Conectamos y preparamos la consulta para sacar la id del usuario y el saldo actual.
+ * Os tiene que devolver una fila, si nos devuelve algo, por lo tanto guardamos en saldoActual el saldo actual y en id el id del cliente.
+ * Sumamos la cantidad a ingresar al saldo actual.
+ * @param type $cadenaConexion
+ */
 function ingresarDinero($cadenaConexion){
     $post=[$_SESSION["user"],
         filter_input(INPUT_POST, "saldo")];
@@ -193,7 +233,12 @@ function ingresarDinero($cadenaConexion){
         
     }
 }
-
+/**
+ * Muestra de foma permanete el saldo actual de la cuenta del usuario basandonos
+ * en el nombre de usuario
+ * @param type $cadenaConexion
+ * @return type
+ */
 function saldoActual($cadenaConexion){
     $user=$_SESSION["user"];
     $bd=new PDO($cadenaConexion, "root", "");

@@ -117,7 +117,7 @@ function borrar($cadenaConexion){
                 $select->execute(array(filter_input(INPUT_POST, "usuarioID")));
                 if($select->rowCount()>0){
                     $delete=$bd->prepare("delete from users where id=?");
-                    $delete->execute(array(8));
+                    $delete->execute(array(filter_input(INPUT_POST, "usuarioID")));
                 }
 		$bd=null;
 	}

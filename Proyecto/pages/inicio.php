@@ -98,8 +98,8 @@ if(isset($_COOKIE["temaGNB"])){
 
 <body>
     <div class="container">
-    <a href='?cambiarLanguage=true'>Cambiar Idioma</a>
-    <a href='?cambiarTema=true'>Cambiar tema</a>
+        <a class="cookies" href='?cambiarLanguage=true'>Cambiar Idioma</a>
+        <a class="cookies"href='?cambiarTema=true'>Cambiar tema</a>
     <form method="GET" action="" class="cont__log">
         <span class="log__text">User Logged: <?php
         echo $_SESSION["user"];

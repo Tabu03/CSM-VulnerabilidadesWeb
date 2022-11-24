@@ -101,8 +101,8 @@ if(isset($_COOKIE["temaGNB"])){
 </head>
 
 <body>
-    <a href='?cambiarLanguage=true'>Cambiar Idioma</a>
-    <a href='?cambiarTema=true'>Cambiar tema</a>
+    <a class="cookies" href='?cambiarLanguage=true'>Cambiar Idioma</a>
+    <a class="cookies"href='?cambiarTema=true'>Cambiar tema</a>
     <!-- Nombre del usuario logeado y el boton para deslogearse -->
     <form method="GET" action="" class="cont__log">
         <span class="log__text">User Logged: <?php

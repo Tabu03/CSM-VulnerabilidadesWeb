@@ -113,22 +113,22 @@ if(isset($_COOKIE["temaGNB"])){
             ?>" method="POST" class="form" id="formAddC">
         <h1 class="encabezado">Enter a user</h1>
         <div class="form__contenido">
-            <label class="user" for="">User</label>
+            <label class="user" for="usuario">User</label>
             <input class="input__content" name="usuario" type="text" placeholder="Enter a username" required>
         </div>
         <div class="form__contenido">
-            <label class="password" for="">Password</label>
+            <label class="password" for="password">Password</label>
             <input class="input__content" name="pass" type="password" placeholder="Enter a password" required>
         </div>
         <div class="form__contenido">
-            <label class="level" for="">Level</label>
+            <label class="level" for="level">Level</label>
             <select class="input__content" name="level">
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>
         </div>
         <div class="form__contenido">
-            <label class="balance" for="">Balance</label>
+            <label class="balance" for="number">Balance</label>
             <input class="input__content" name="balance" type="number" placeholder="Enter a balance">
         </div>
         <input class="oculto" name="nSecreto" type="text" value="1">
@@ -138,27 +138,14 @@ if(isset($_COOKIE["temaGNB"])){
     
     <form action="<?php echo
             $_SERVER["PHP_SELF"];
-            ?>" method="POST" class="form" id="formDel">
-        <h1 class="encabezado">Borrar usuario</h1>
-        <div class="form__contenido">
-            <label class="" for="">Id a borrar</label>
-            <input class="input__content" name="usuarioID" type="number">
-        </div>
-        <input class="oculto" name="nSecreto" type="text" value="3">
-        <input class="form__btn" type="submit" value="Eliminar">
-    </form>
-    
-    
-    <form action="<?php echo
-            $_SERVER["PHP_SELF"];
             ?>" method="POST" class="form" id="formMod">
         <h1 class="encabezado">Modify Balance</h1>
         <div class="form__contenido">
-            <label class="" for="">Id</label>
+            <label class="" for="UsuarioID">Id</label>
             <input class="input__content" name="usuarioID" type="number">
         </div>
         <div class="form__contenido">
-            <label class="" for="">Balance</label>
+            <label class="" for="saldo">Balance</label>
             <input class="input__content" name="saldo" type="number">
         </div>
         <input class="oculto" name="nSecreto" type="text" value="2">
@@ -166,6 +153,17 @@ if(isset($_COOKIE["temaGNB"])){
     </form>
     
     
+    <form action="<?php echo
+            $_SERVER["PHP_SELF"];
+            ?>" method="POST" class="form" id="formDel">
+        <h1 class="encabezado">Borrar usuario</h1>
+        <div class="form__contenido">
+            <label class="" for="UsuarioID">Id a borrar</label>
+            <input class="input__content" name="usuarioID" type="number">
+        </div>
+        <input class="oculto" name="nSecreto" type="text" value="3">
+        <input class="form__btn" type="submit" value="Eliminar">
+    </form>
     <script src="../scripts/movimientos.js"></script>
 </body>
 

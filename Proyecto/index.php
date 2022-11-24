@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <?php
 session_start();
+//Comprobar metodo de peticion del servidor
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
         include 'scripts/ConexionBD.php';
         inicioSesion($cadenaConexion);
 }
+//Comprobar el user y el level y dependiendo del level te llevara a una pagina u otra
 if(isset($_SESSION["user"])&&isset($_SESSION["LEVEL"])){
     switch ($_SESSION["LEVEL"]){
         case 1:
@@ -38,6 +40,7 @@ if(!isset($_COOKIE["language"]))
         setcookie(time()+3600 *24);
     }
 ?>
+<!-- Formulario del login para el inicio de sesión de la aplicación -->
 <html>
     <head>
         <meta charset="UTF-8">

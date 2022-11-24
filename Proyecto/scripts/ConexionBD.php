@@ -106,7 +106,7 @@ function insertar($cadenaConexion){
 		$bd=null;
 	}
     catch (Exception $e){
-        echo "Fallo al conectar con la base de datos";
+        
     }
 }
 
@@ -122,7 +122,7 @@ function borrar($cadenaConexion){
 		$bd=null;
 	}
         catch (Exception $e){
-        echo "Fallo al conectar con la base de datos";
+            
     }
 }
 
@@ -142,6 +142,6 @@ function modificar($cadenaConexion){
 		$bd=null;
 	}
         catch (Exception $e){
-        echo "Fallo al conectar con la base de datos";
+            
     }
 }

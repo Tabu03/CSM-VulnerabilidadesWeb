@@ -116,8 +116,13 @@ function borrar($cadenaConexion){
                 $select=$bd->prepare("select * from users where id=?");
                 $select->execute(array(filter_input(INPUT_POST, "usuarioID")));
                 if($select->rowCount()>0){
-                    $delete=$bd->prepare("delete from users where id=?");
-                    $delete->execute(array(filter_input(INPUT_POST, "usuarioID")));
+                    foreach ($select as $fila){
+                        if ($fila["LEVEL"]==2){
+                            $delete=$bd->prepare("delete from users where id=?");
+                            $delete->execute(array(filter_input(INPUT_POST, "usuarioID")));
+                        }
+                    }
+                    
                 }
 		$bd=null;
 	}
@@ -134,7 +139,7 @@ function modificar($cadenaConexion){
                 $select=$bd->prepare("select * from users where id=?");
                 $select->execute(array($post[1]));
                 if($select->rowCount()>0){
-                    $update=$bd->prepare("update users set saldo=saldo+? where ID=?");
+                    $update=$bd->prepare("update users set saldo=? where ID=?");
                    
                     $update->execute(array($post[0],$post[1]));
                     $bd->commit();

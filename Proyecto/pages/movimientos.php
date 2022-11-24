@@ -4,7 +4,18 @@ session_start();
 include '../scripts/ConexionBD.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    insertar($cadenaConexion);
+    switch (filter_input(INPUT_POST, "nSecreto")){
+        case 1:
+            insertar($cadenaConexion);
+            break;
+        case 2:
+            modificar($cadenaConexion);
+            break;
+        case 3:
+            borrar($cadenaConexion);
+            break;
+    }
+    
 }
 if(!isset($_SESSION["user"])){
     header("location: ../index.php");
@@ -133,7 +144,7 @@ if(isset($_COOKIE["temaGNB"])){
             <label class="" for="">Id a borrar</label>
             <input class="input__content" name="usuarioID" type="number">
         </div>
-        <input class="oculto" name="nSecreto" type="text" value="2">
+        <input class="oculto" name="nSecreto" type="text" value="3">
         <input class="form__btn" type="submit" value="Eliminar">
     </form>
     

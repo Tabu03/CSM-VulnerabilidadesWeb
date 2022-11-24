@@ -48,10 +48,7 @@ if(!isset($_COOKIE["language"]))
     <body>
         <main class="container">
         <section class="form">
-        <form method ="POST" action ="
-            <?php echo
-            $_SERVER["PHP_SELF"];
-            ?>">
+        <form method ="POST" action ="">
             <p class="form__user">Usuario</p>
             <input id ="usuario" name="usuario" type="text">
             <p class="form__paswd">Contraseña</p>

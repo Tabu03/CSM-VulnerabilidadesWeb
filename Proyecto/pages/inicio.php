@@ -3,16 +3,13 @@
 session_start();
 include '../scripts/ConexionBD.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST"&&isset($_SESSION["user"])&&!isset($_GET["hidden"])){
     switch (filter_input(INPUT_POST, "nSecreto")){
         case 1:
             ingresarDinero($cadenaConexion);
             break;
         case 2:
             sacarDinero($cadenaConexion);
-            break;
-        case 3:
-            borrar($cadenaConexion);
             break;
     }
     
@@ -105,7 +102,7 @@ if(isset($_COOKIE["temaGNB"])){
                 <td class="saldo__td--h">Saldo actual</td>
             </tr>
             <tr>
-                <td class="saldo__td--b">0</td>
+                <td class="saldo__td--b">'.saldoActual($cadenaConexion).'</td>
             </tr>
         </table>
         </div>
@@ -117,7 +114,7 @@ if(isset($_COOKIE["temaGNB"])){
             </div>
         </div>';
         
-        echo '<form action='.$_SERVER["PHP_SELF"].'method="POST" class="form" id="formIng">
+        echo '<form action='.$_SERVER["PHP_SELF"].' method="POST" class="form" id="formIng">
         <h1 class="encabezado">¿Cuanto dinero quieres ingresar?</h1>
         <div class="form__contenido">
             <label class="" for="Money">Cantidad</label>
@@ -127,7 +124,7 @@ if(isset($_COOKIE["temaGNB"])){
         <input class="form__btn" type="submit" value="Sacar">
             </form>';
         
-        echo '<form action='.$_SERVER["PHP_SELF"].'method="POST" class="form" id="formSac">
+        echo '<form action='.$_SERVER["PHP_SELF"].' method="POST" class="form" id="formSac">
         <h1 class="encabezado">¿Cuanto dinero quieres retirar?</h1>
         <div class="form__contenido">
             <label class="" for="Monew">Cantidad</label>
@@ -146,7 +143,7 @@ if(isset($_COOKIE["temaGNB"])){
                 <td class="saldo__td--h">Actual balance</td>
             </tr>
             <tr>
-                <td class="saldo__td--b">0</td>
+                <td class="saldo__td--b">'.saldoActual($cadenaConexion).'</td>
             </tr>
         </table>
         </div>
@@ -158,7 +155,7 @@ if(isset($_COOKIE["temaGNB"])){
             </div>
         </div>';
         
-        echo '<form action='.$_SERVER["PHP_SELF"].'method="POST" class="form" id="formIng">
+        echo '<form action='.$_SERVER["PHP_SELF"].' method="POST" class="form" id="formIng">
         <h1 class="encabezado">How much money do you want to deposit?</h1>
         <div class="form__contenido">
             <label class="" for="Money">Amount</label>
@@ -168,7 +165,7 @@ if(isset($_COOKIE["temaGNB"])){
         <input class="form__btn" type="submit" value="Deposit">
             </form>';
         
-        echo '<form action='.$_SERVER["PHP_SELF"].'method="POST" class="form" id="formSac">
+        echo '<form action='.$_SERVER["PHP_SELF"].' method="POST" class="form" id="formSac">
         <h1 class="encabezado">How much money do you want to withdraw?</h1>
         <div class="form__contenido">
             <label class="" for="Monew">Amount</label>

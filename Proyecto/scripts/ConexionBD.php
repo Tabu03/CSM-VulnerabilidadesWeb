@@ -174,7 +174,7 @@ function sacarDinero($cadenaConexion){
 
 
 
-function ingresarDineroPrueba($cadenaConexion){
+function ingresarDinero($cadenaConexion){
     $post=[$_SESSION["user"],
         filter_input(INPUT_POST, "saldo")];
     $id;
@@ -191,5 +191,17 @@ function ingresarDineroPrueba($cadenaConexion){
             $select=$bd->prepare("insert into moves values(ID_TRANS,?,?,DATE(NOW()),'Ingreso de dinero')");
             $select->execute(array($id,$post[1]));
         
+    }
+}
+
+function saldoActual($cadenaConexion){
+    $user=$_SESSION["user"];
+    $bd=new PDO($cadenaConexion, "root", "");
+    $result=$bd->prepare("select * from users where user=?");
+    $result->execute(array($user));
+    if ($result->rowCount()==1){
+        foreach($result as $saldo){
+            return $saldo["SALDO"];
+        }
     }
 }

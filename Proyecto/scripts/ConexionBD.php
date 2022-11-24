@@ -107,24 +107,21 @@ function insertar($cadenaConexion){
     }
 }
 
-/*function borrar($cadenaConexion, $usuario, $password){
+function borrar($cadenaConexion){
 	try{
-		$bd=new PDO($cadenaConexion, $usuaio, $pass);
-		$delete="delete from users where id=$id";
-		$result=$bd->query($delete);
-
-		if($result){
-			echo "Se ha borrado correctamente";
-			echo "Fila (s) borradas: ".$result->rowCount()."<br>";
-		} else {
-			print_r($bd->errorinfo());
-		}
+		$bd=new PDO($cadenaConexion, "root", "");
+                $select=$bd->prepare("select * from users where id=?");
+                $select->execute(array(filter_input(INPUT_POST, "usuarioID")));
+                if($select->rowCount()>0){
+                    $delete=$bd->prepare("delete from users where id=?");
+                    $delete->execute(array(8));
+                }
 		$bd=null;
 	}
         catch (Exception $e){
         echo "Fallo al conectar con la base de datos";
     }
-}*/
+}
 
 /*function modificar($cadenaConexion, $usuario, $password){
 	try{

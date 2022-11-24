@@ -37,7 +37,9 @@ if(isset($_SESSION["LEVEL"])){
     }
 }
 
-
+/**
+ * Cookie que comprueba el idioma e imprime la pagina conforme a la la cookie
+ */
 if(isset($_COOKIE["language"])){
     $lenguaje = (int)$_COOKIE["language"];
         setcookie(time()+3600 *24);
@@ -56,9 +58,10 @@ if(isset($_COOKIE["language"])){
         }   
     }
 }
-    echo "<br><a href='?cambiarLanguage=true'>Cambiar Idioma</a>";
     
-    
+   /**
+   * Cookie que aplica el tema em base al valor de la cookie
+   */
 if(isset($_COOKIE["temaGNB"])){
     //no olvidar hacer casting a entero
         $tema = (int)$_COOKIE["temaGNB"];
@@ -77,7 +80,7 @@ if(isset($_COOKIE["temaGNB"])){
         }   
     }
 }
-    echo "<br><a href='?cambiarTema=true'>Cambiar tema</a>";
+    
     
 ?>
 <html lang="es">
@@ -98,6 +101,8 @@ if(isset($_COOKIE["temaGNB"])){
 </head>
 
 <body>
+    <a href='?cambiarLanguage=true'>Cambiar Idioma</a>
+    <a href='?cambiarTema=true'>Cambiar tema</a>
     <!-- Nombre del usuario logeado y el boton para deslogearse -->
     <form method="GET" action="" class="cont__log">
         <span class="log__text">User Logged: <?php

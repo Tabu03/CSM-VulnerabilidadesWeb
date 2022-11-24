@@ -3,6 +3,7 @@
 session_start();
 include '../scripts/ConexionBD.php';
 
+//Comprobar el numero del formulario de cada boton a la hora de realizar una consulta
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     switch (filter_input(INPUT_POST, "nSecreto")){
         case 1:
@@ -17,13 +18,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
 }
+
+//Comprobar que a inicio sesion
 if(!isset($_SESSION["user"])){
     header("location: ../index.php");
 }
+
+//Detruir la sesion al pulsar el boton de log out
 if(isset($_GET["hidden"])){
     session_destroy();
     header("location: ../index.php");
 }
+
+//Comporbar el nivel del usuario
 if(isset($_SESSION["LEVEL"])){
     if($_SESSION["LEVEL"]!=1){
         header("location: ../index.php");
@@ -81,6 +88,7 @@ if(isset($_COOKIE["temaGNB"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movimientos</title>
     <link rel="stylesheet" href="../css/movimientos.css">
+    <!-- Comprobar el valor de la variable tema para cambiar el tema de la pagina -->
     <link rel="stylesheet" href="../css/<?php 
         if($tema == 0){
             echo "claro";
@@ -90,6 +98,7 @@ if(isset($_COOKIE["temaGNB"])){
 </head>
 
 <body>
+    <!-- Nombre del usuario logeado y el boton para deslogearse -->
     <form method="GET" action="" class="cont__log">
         <span class="log__text">User Logged: <?php
         echo $_SESSION["user"];
@@ -107,7 +116,8 @@ if(isset($_COOKIE["temaGNB"])){
         <button class="boton" id="modifyBalance">Client modify</button>
         <button class="boton" id="deleteClient">Erase client</button>
     </div>
-
+    
+    <!-- Formulario que aparecera al pulsar el boton de client add -->
     <form action="<?php echo
             $_SERVER["PHP_SELF"];
             ?>" method="POST" class="form" id="formAddC">
@@ -135,7 +145,7 @@ if(isset($_COOKIE["temaGNB"])){
         <input class="form__btn" type="submit" value="Crear">
     </form>
     
-    
+    <!-- Formulario que aparecera al pulsar el boton de client modify -->
     <form action="<?php echo
             $_SERVER["PHP_SELF"];
             ?>" method="POST" class="form" id="formMod">
@@ -152,7 +162,7 @@ if(isset($_COOKIE["temaGNB"])){
         <input class="form__btn" type="submit" value="Change">
     </form>
     
-    
+    <!-- Formulario que aparecera al pulsar el boton de erase client -->
     <form action="<?php echo
             $_SERVER["PHP_SELF"];
             ?>" method="POST" class="form" id="formDel">

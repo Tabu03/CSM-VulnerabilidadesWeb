@@ -147,3 +147,49 @@ function modificar($cadenaConexion){
             
     }
 }
+
+function sacarDinero($cadenaConexion){
+    $post=[$_SESSION["user"],
+        filter_input(INPUT_POST, "saldo")];
+    
+    $saldoActual=0;
+    $id;
+    
+    $bd=new PDO($cadenaConexion, "root", "");
+    $result=$bd->prepare("select * from users where user=?");
+    $result->execute(array($post[0]));
+    if ($result->rowCount()==1){
+        foreach($result as $saldo){
+            $saldoActual=$saldo["SALDO"];
+            $id=$saldo["ID"];
+        }
+        if (($saldoActual-$post[1])>=0){
+            $select=$bd->prepare("update users set saldo=saldo-? where user=?");
+            $select->execute(array($post[1],$post[0]));
+            $select=$bd->prepare("insert into moves values(ID_TRANS,?,-?,DATE(NOW()),'Retirada de dinero')");
+            $select->execute(array($id,$post[1]));
+        }
+    }
+}
+
+
+
+function ingresarDineroPrueba($cadenaConexion){
+    $post=[$_SESSION["user"],
+        filter_input(INPUT_POST, "saldo")];
+    $id;
+    
+    $bd=new PDO($cadenaConexion, "root", "");
+    $result=$bd->prepare("select * from users where user=?");
+    $result->execute(array($post[0]));
+    if ($result->rowCount()==1){
+        foreach($result as $saldo){
+            $id=$saldo["ID"];
+        }
+            $select=$bd->prepare("update users set saldo=saldo+? where user=?");
+            $select->execute(array($post[1],$post[0]));
+            $select=$bd->prepare("insert into moves values(ID_TRANS,?,?,DATE(NOW()),'Ingreso de dinero')");
+            $select->execute(array($id,$post[1]));
+        
+    }
+}

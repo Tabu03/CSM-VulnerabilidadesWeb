@@ -1,19 +1,16 @@
 <?php
-
-$bd;
 $cadenaConexion = 'mysql:dbname=gnb;host=127.0.0.1';
-$usuario = filter_input(INPUT_POST, "usuario");
-$pass = filter_input(INPUT_POST, "clave");
-
 
 /*
- * funcion inicioSesion(consulta,cadena de conexion, usuario, pass)
+ * funcion inicioSesion(cadena de conexion)
  * conecta a la base de datos y comprueba, si la consulta devuelve alguna
  * fila, significa que encontro el usuario y la contraseña, por lo tanto
  * la sesion comienza
  * 
  */
-function inicioSesion($cadenaConexion, $usuario, $pass) {
+function inicioSesion($cadenaConexion) {
+    $usuario = filter_input(INPUT_POST, "usuario");
+    $pass = filter_input(INPUT_POST, "clave");
     $bd = new PDO($cadenaConexion, "root", "");
     $ins=$bd->prepare("select * from users where PASSWORD = sha1(?)&&USER=?");
     $ins->execute(array($pass,$usuario));

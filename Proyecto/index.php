@@ -3,7 +3,7 @@
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
         include 'scripts/ConexionBD.php';
-        inicioSesion($cadenaConexion, $usuario, $pass);
+        inicioSesion($cadenaConexion);
 }
 if(isset($_SESSION["user"])&&isset($_SESSION["LEVEL"])){
     switch ($_SESSION["LEVEL"]){

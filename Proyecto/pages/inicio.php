@@ -3,6 +3,7 @@
 session_start();
 include '../scripts/ConexionBD.php';
 
+//El usuario podra ingresar o retirar dinero
 if ($_SERVER["REQUEST_METHOD"] == "POST"&&isset($_SESSION["user"])&&!isset($_GET["hidden"])){
     switch (filter_input(INPUT_POST, "nSecreto")){
         case 1:
@@ -14,13 +15,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"&&isset($_SESSION["user"])&&!isset($_GET
     }
     
 }
+
+//Comprobar que se ha iniciado sesion en la aplicacion
 if(!isset($_SESSION["user"])){
     header("location: ../index.php");
 }
+
+//Eliminar la cookie desde el boton log out
 if(isset($_GET["hidden"])){
     session_destroy();
     header("location: ../index.php");
 }
+
+//Comprobar el nivel del usuario
 if(isset($_SESSION["LEVEL"])){
     if($_SESSION["LEVEL"]!=2){
         header("location: ../index.php");
@@ -93,7 +100,11 @@ if(isset($_COOKIE["temaGNB"])){
         <input type="submit" name="LogOut" value="Log out" class="boton boton__log">
     </form>
         <?php
+        //Dependiendo de la cookie saldra en un idioma u otro
         if ($_COOKIE["language"]==0){
+            
+            //Mostrara el saldo y se podra realizar un ingreso o un retiro de dinero
+            
         echo '<h1 class="encabezado">Bienvenido al Goliath National Bank</h1>
             
         <div class="saldo">
@@ -114,6 +125,8 @@ if(isset($_COOKIE["temaGNB"])){
             </div>
         </div>';
         
+        //Para ingresar dinero
+        
         echo '<form action='.$_SERVER["PHP_SELF"].' method="POST" class="form" id="formIng">
         <h1 class="encabezado">¿Cuanto dinero quieres ingresar?</h1>
         <div class="form__contenido">
@@ -123,6 +136,8 @@ if(isset($_COOKIE["temaGNB"])){
         <input class="oculto" name="nSecreto" type="text" value="1">
         <input class="form__btn" type="submit" value="Sacar">
             </form>';
+        
+        //Para sacar dinero
         
         echo '<form action='.$_SERVER["PHP_SELF"].' method="POST" class="form" id="formSac">
         <h1 class="encabezado">¿Cuanto dinero quieres retirar?</h1>
@@ -135,6 +150,9 @@ if(isset($_COOKIE["temaGNB"])){
             </form>';
         
         }else{
+            
+        //Comprobar el saldo
+            
         echo '<h1 class="encabezado">Welcome to the Goliath National Bank</h1>
         
         <div class="saldo">
@@ -155,6 +173,8 @@ if(isset($_COOKIE["temaGNB"])){
             </div>
         </div>';
         
+        //Cambiar el saldo en la base de datos y del usuario (Ingresar dinero)
+        
         echo '<form action='.$_SERVER["PHP_SELF"].' method="POST" class="form" id="formIng">
         <h1 class="encabezado">How much money do you want to deposit?</h1>
         <div class="form__contenido">
@@ -164,6 +184,8 @@ if(isset($_COOKIE["temaGNB"])){
         <input class="oculto" name="nSecreto" type="text" value="1">
         <input class="form__btn" type="submit" value="Deposit">
             </form>';
+        
+        //Cambiar el saldo en la base de datos y del usuario (Sacar dinero)
         
         echo '<form action='.$_SERVER["PHP_SELF"].' method="POST" class="form" id="formSac">
         <h1 class="encabezado">How much money do you want to withdraw?</h1>

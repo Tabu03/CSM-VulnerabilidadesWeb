@@ -103,11 +103,11 @@ if(isset($_COOKIE["temaGNB"])){
         <h1 class="encabezado">Enter a user</h1>
         <div class="form__contenido">
             <label class="user" for="">User</label>
-            <input class="input__content" name="usuario" type="text" placeholder="Enter a username">
+            <input class="input__content" name="usuario" type="text" placeholder="Enter a username" required>
         </div>
         <div class="form__contenido">
             <label class="password" for="">Password</label>
-            <input class="input__content" name="pass" type="password" placeholder="Enter a password">
+            <input class="input__content" name="pass" type="password" placeholder="Enter a password" required>
         </div>
         <div class="form__contenido">
             <label class="level" for="">Level</label>

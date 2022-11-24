@@ -90,6 +90,9 @@ function insertar($cadenaConexion){
             filter_input(INPUT_POST, "pass"),
             filter_input(INPUT_POST, "level"),
             filter_input(INPUT_POST, "balance")];
+        if($campos[3]==""&&$campos[2]==1){
+            $campos[3]=null;
+        }
         try{
 		$bd=new PDO($cadenaConexion, "root", "");
                 $select=$bd->prepare("select * from users where user=?");
